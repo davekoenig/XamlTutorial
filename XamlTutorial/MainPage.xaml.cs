@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using XamlTutorial.Models;
+using XamlTutorial.ViewModels;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -22,9 +24,25 @@ namespace XamlTutorial
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public PlayerListViewModel ViewModel;
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            this.ViewModel = new PlayerListViewModel();
+            this.DataContext = this.ViewModel;
+        }
+
+        private void AddPlayerButton_Click(object sender, RoutedEventArgs e)
+        {
+            var player = new PlayerDesc()
+            {
+                FirstName = FirstNameBox.Text,
+                LastName = LastNameBox.Text
+            };
+
+            this.ViewModel.Players.Add(player);
         }
     }
 }
