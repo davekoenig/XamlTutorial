@@ -44,5 +44,16 @@ namespace XamlTutorial
 
             this.ViewModel.Players.Add(player);
         }
+
+        private void AddGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            var game = new GameDesc()
+            {
+                StartTime = DateTime.Now,
+                Room = RoomNameBox.Text
+            };
+
+            ViewModel.Games.Add(game);
+        }
     }
 }

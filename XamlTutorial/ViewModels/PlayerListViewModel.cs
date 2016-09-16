@@ -8,11 +8,11 @@ namespace XamlTutorial.ViewModels
     {
         public ObservableCollection<PlayerDesc> Players { get; set; }
 
+        public ObservableCollection<GameDesc> Games { get; set; }
+
         public PlayerListViewModel()
         {
             Players = new ObservableCollection<PlayerDesc>();
-
-            Players.Add(new PlayerDesc() { FirstName = "Dave", LastName = "Koenig" });
         }
     }
 }

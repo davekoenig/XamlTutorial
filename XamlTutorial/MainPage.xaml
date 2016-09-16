@@ -9,11 +9,42 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot >
+            <PivotItem Name="AttendancePivotItem">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Name="AttendanceBox" Text="Attendance"/>
+
+                </StackPanel>
+            </PivotItem>
             <PivotItem Name="ResultsPivotItem">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Name="ResultsBox" Text="Results"/>
+                    
+                </StackPanel>
+            </PivotItem>
+            <PivotItem Name="CreateGamePivotItem">
+            <StackPanel>
+                <TextBlock Name="CreateGameTextBlock" Text="Create Game"/>
+                    <TextBox Name="RoomNameBox" Text="Room Name"/>
+                    <TextBox Name="StartTimeBox" Text="Start Time"/>
+                    <Button Name="AddGameButton" Click="AddGameButton_Click">
+                        <TextBlock Text="Add Game"/>
+                    </Button>
+                    <ListView Name="GameListView" ItemsSource="{Binding Games}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding Name}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </PivotItem>
+            <PivotItem Name="CreatePlayerPivotItem">
+                <StackPanel>
+                    <TextBlock Name="CreatePlayerTextBlock" Text="Create Player"/>
                     <TextBox Name="FirstNameBox" Text="First Name"/>
-                    <TextBox Name="LastNameBox" Text="LastName"/>
+                    <TextBox Name="LastNameBox" Text="Last Name"/>
                     <Button Name="AddPlayerButton" Click="AddPlayerButton_Click">
                         <TextBlock Text="Add Player"/>
                     </Button>
@@ -26,16 +57,6 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </StackPanel>
-            </PivotItem>
-            <PivotItem Name="CreateGamePivotItem">
-            <StackPanel>
-                <TextBlock Name="CreateGameTextBlock" Text="Create Game"/>
-            </StackPanel>
-            </PivotItem>
-            <PivotItem Name="CreatePlayerPivotItem">
-                <StackPanel>
-                    <TextBlock Name="CreatePlayerTextBlock" Text="Create Player"/>
                 </StackPanel>
             </PivotItem>
             <PivotItem Name="EnterResultPivotItem">
