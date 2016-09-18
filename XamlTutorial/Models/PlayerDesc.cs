@@ -1,8 +1,10 @@
-﻿namespace XamlTutorial.Models
+﻿using System;
+
+namespace XamlTutorial.Models
 {
     public class PlayerDesc
     {
-        public string Id { get; set; }
+        public string Id { get; set; } = Guid.NewGuid().ToString();
 
         public string FirstName { get; set; }
 
@@ -14,6 +16,11 @@
             {
                 return $"{FirstName} {LastName}";
             }
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

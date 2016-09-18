@@ -9,19 +9,26 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Pivot >
-            <PivotItem Name="AttendancePivotItem">
+            <PivotItem Name="AttendancePivotItem" Header="Attendance">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Name="AttendanceBox" Text="Attendance"/>
-
                 </StackPanel>
             </PivotItem>
-            <PivotItem Name="ResultsPivotItem">
+            <PivotItem Name="ResultsPivotItem" Header="Results">
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Name="ResultsBox" Text="Results"/>
-                    
+                    <ListView Name="ResultsListView" ItemsSource="{Binding Results}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="{Binding GameDescription}"/>
+                                    <TextBlock Text="{Binding WinningsDescription}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackPanel>
             </PivotItem>
-            <PivotItem Name="CreateGamePivotItem">
+            <PivotItem Name="CreateGamePivotItem" Header="Create Game">
             <StackPanel>
                 <TextBlock Name="CreateGameTextBlock" Text="Create Game"/>
                     <TextBox Name="RoomNameBox" Text="Room Name"/>
@@ -33,14 +40,14 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock Text="{Binding Name}"/>
+                                    <TextBlock Text="{Binding Description}"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackPanel>
             </PivotItem>
-            <PivotItem Name="CreatePlayerPivotItem">
+            <PivotItem Name="CreatePlayerPivotItem" Header="Create Player">
                 <StackPanel>
                     <TextBlock Name="CreatePlayerTextBlock" Text="Create Player"/>
                     <TextBox Name="FirstNameBox" Text="First Name"/>
@@ -59,9 +66,21 @@
                     </ListView>
                 </StackPanel>
             </PivotItem>
-            <PivotItem Name="EnterResultPivotItem">
+            <PivotItem Name="EnterResultPivotItem" Header="Add Result">
                 <StackPanel>
                     <TextBlock Name="EnterResultTextBlock" Text="Enter Result"/>
+                    <TextBlock Text="Game:"/>
+                    <ComboBox Name="GameResultComboBox" ItemsSource="{Binding Games}"/>
+                    <TextBlock Text="Player:"/>
+                    <ComboBox Name="PlayerResultComboBox" ItemsSource="{Binding Players}"/>
+                    <TextBlock Text="Buy In:"/>
+                    <TextBox Name="ResultBuyInBox" />
+                    <TextBlock Text="Cash Out:"/>
+                    <TextBox Name="ResultCashOutBox" />
+                    <Button Name="AddResultButton" Click="AddResultButton_Click">
+                        <TextBlock Text="Submit"/>
+                    </Button>
+
                 </StackPanel>
             </PivotItem>
         </Pivot>

@@ -10,9 +10,15 @@ namespace XamlTutorial.ViewModels
 
         public ObservableCollection<GameDesc> Games { get; set; }
 
+        public ObservableCollection<GameResult> Results { get; set; }
+
         public PlayerListViewModel()
         {
             Players = new ObservableCollection<PlayerDesc>();
+
+            Games = new ObservableCollection<GameDesc>();
+
+            Results = new ObservableCollection<GameResult>();
         }
     }
 }

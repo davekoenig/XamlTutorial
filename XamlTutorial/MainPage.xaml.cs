@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -54,6 +55,47 @@ namespace XamlTutorial
             };
 
             ViewModel.Games.Add(game);
+        }
+
+        private async void AddResultButton_Click(object sender, RoutedEventArgs e)
+        {
+            float buyIn, cashOut;
+            if (!float.TryParse(ResultBuyInBox.Text, out buyIn))
+            {
+                var message = new MessageDialog($"Buy In ({ResultBuyInBox.Text}) is not a valid dollar value.", "Error");
+                await message.ShowAsync();
+                return;
+            }
+            if (!float.TryParse(ResultCashOutBox.Text, out cashOut))
+            {
+                var message = new MessageDialog($"Cash Out (${ResultCashOutBox.Text}) is not a valid dollar value.", "Error");
+                await message.ShowAsync();
+                return;
+            }
+
+            if (GameResultComboBox.SelectedItem == null)
+            {
+                var message = new MessageDialog("You must select a game", "Error");
+                await message.ShowAsync();
+                return;
+            }
+
+            if (PlayerResultComboBox.SelectedItem == null)
+            {
+                var message = new MessageDialog("You must select a player.", "Error");
+                await message.ShowAsync();
+                return;
+            }
+
+            var newResult = new GameResult
+            {
+                BuyIn = buyIn,
+                CashOut = cashOut,
+                Game = GameResultComboBox.SelectedItem as GameDesc,
+                Player = PlayerResultComboBox.SelectedItem as PlayerDesc
+            };
+
+            ViewModel.Results.Add(newResult);
         }
     }
 }
